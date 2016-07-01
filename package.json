@@ -1,6 +1,6 @@
 {
   "name": "apollo-list",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Craiglist lookalike built with React + Redux + Apollo.",
   "main": "index.js",
   "scripts": {
