@@ -21,7 +21,7 @@ export class RootContent extends Component {
       );
     }
 
-    return <div>Loading</div>;
+    return false;
   }
 }
 

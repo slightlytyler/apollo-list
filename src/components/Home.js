@@ -10,7 +10,7 @@ export default class Home extends Component {
             <Panel fluid>
               <VerticalBox center fit>
                 <h1>Welcome to your app!</h1>
-                <p>Powered by React + Redux + Material UI</p>
+                <p>Powered by React + Redux + Portland UI</p>
               </VerticalBox>
             </Panel>
           </SmallContainer>

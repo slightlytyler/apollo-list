@@ -1,18 +1,18 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
+import { LargeContainer } from 'react-portland-ui';
 import { Avatar, Logout } from 'modules/user/components';
 
 export const Header = ({ visible }) => {
-  const classes = classnames('page__header', 'container--outer', { visible });
-  const content = visible
-    ? [<Avatar key="avatar" className="user" />, <Logout key="logout" className="action" />]
-    : undefined;
+  if (visible) {
+    return (
+      <LargeContainer className="header">
+        <Avatar key="avatar" className="user" />
+        <Logout key="logout" className="action" />
+      </LargeContainer>
+    );
+  }
 
-  return (
-    <header className={classes}>
-      {content}
-    </header>
-  );
+  return false;
 };
 
 Header.propTypes = {

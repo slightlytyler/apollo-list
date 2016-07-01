@@ -97,6 +97,7 @@ const config = {
       config: path.join(__src, 'config'),
       helpers: path.join(__src, 'helpers'),
       icons: __icons,
+      layouts: path.join(__src, 'layouts'),
       modules: path.join(__src, 'modules'),
       reducers: path.join(__src, 'reducers'),
       routes: path.join(__src, 'routes'),

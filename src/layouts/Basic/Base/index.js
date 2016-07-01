@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import Header from './Header';
+import { VerticalBox } from 'react-portland-ui';
+import Header from '../Header';
 
 export default class Page extends Component {
   static propTypes = {
@@ -8,10 +9,10 @@ export default class Page extends Component {
 
   render() {
     return (
-      <div className="container--page">
+      <VerticalBox className="layout--basic">
         <Header />
         {this.props.children}
-      </div>
+      </VerticalBox>
     );
   }
 }

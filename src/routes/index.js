@@ -3,7 +3,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import { Page, Home } from 'components';
+import { Basic } from 'layouts';
+import { Home } from 'components';
 import { Login, SignUp } from 'modules/user/components';
 
 export default ({ dispatch, getState }) => {
@@ -16,7 +17,7 @@ export default ({ dispatch, getState }) => {
   };
 
   return (
-    <Route path="/" component={Page}>
+    <Route path="/" component={Basic}>
       <IndexRoute component={Home} onEnter={authenticateRoute} />
       <Route path="login" component={Login} />
       <Route path="sign-up" component={SignUp} />

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import Content from './Content';
+import Content from '../Content';
 
 export default class Root extends Component {
   static propTypes = {
