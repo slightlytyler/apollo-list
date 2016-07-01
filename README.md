@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/slightlytyler/apollo-list.svg?branch=master)](https://travis-ci.org/slightlytyler/apollo-list)
 
-Rapid application prototyping for the web.
-
 ## Install
 
 ```
