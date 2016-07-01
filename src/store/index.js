@@ -8,7 +8,9 @@ import rootReducer from 'reducers';
 import * as modules from 'modules';
 
 const { initializer: router } = modules.router;
+const { initializer: apollo } = modules.apollo;
 const { initializer: storage } = modules.storage;
+
 const persistentKeys = map(
   getModuleConfigs(modules, 'persist', true),
   (value, key) => [key, ...flatten(value)]
@@ -31,6 +33,7 @@ export default function configureStore(initialState = {}) {
   const middleware = applyMiddleware(
     thunkMiddleware,
     sagaMiddleware,
+    apollo.middleware,
     router.middleware,
     storageMiddleware,
     ...getModuleAtoms(modules, 'middleware')

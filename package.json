@@ -43,6 +43,7 @@
     "lodash": "^4.13.1",
     "path": "^0.12.7",
     "react": "^15.1.0",
+    "react-apollo": "^0.3.13",
     "react-dom": "^15.1.0",
     "react-portland-ui": "^0.2.3",
     "react-redux": "^4.4.5",

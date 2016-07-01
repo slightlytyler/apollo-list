@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { initializer as apollo } from 'modules/apollo';
 import initialize from './initialize';
 import configureStore from 'store';
 import makeRoutes from 'routes';
@@ -16,6 +17,7 @@ const routes = makeRoutes(store);
 ReactDOM.render(
   <Root
     store={store}
+    client={apollo.client}
     history={history}
     routes={routes}
   />,
