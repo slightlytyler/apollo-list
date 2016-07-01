@@ -1,0 +1,24 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "env": {
+    "browser": true
+  },
+  "globals" : {
+    "describe": false,
+    "it": false,
+    "expect": false,
+    "before": false,
+    "after": false,
+    "beforeEach": false,
+    "afterEach": false
+  },
+  "rules": {
+    "import/no-unresolved": "off",
+    "no-underscore-dangle": "off",
+    "react/prefer-stateless-function": "off",
+    "no-unused-expressions": "off"
+  }
+}

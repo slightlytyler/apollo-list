@@ -1,0 +1,19 @@
+{
+  "presets": ["es2015", "stage-0", "react"],
+  "plugins": [
+    "lodash",
+    "transform-runtime",
+    "transform-regenerator",
+    "transform-async-to-generator"
+  ],
+  "env": {
+    "development": {
+      "plugins": [["react-transform", {
+        "transforms": [{
+          "transform": "react-transform-catch-errors",
+          "imports": ["react", "redbox-react"]
+        }]
+      }]]
+    }
+  }
+}
