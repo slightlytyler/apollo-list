@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Page, SmallContainer, Box, VerticalBox, Panel } from 'react-portland-ui';
 
-export default class Home extends Component {
+export class Home extends Component {
   render() {
     return (
       <Page>
@@ -19,3 +19,13 @@ export default class Home extends Component {
     );
   }
 }
+
+import { connect } from 'react-apollo';
+import gql from 'graphql-tag';
+
+const mapQueriesToProps = () => ({
+});
+
+export default connect({
+  mapQueriesToProps,
+})(Home);
