@@ -1,4 +1,4 @@
-export Login from './Login';
+export Login from './auth/Login';
+export SignUp from './auth/SignUp';
 export Logout from './Logout';
-export SignUp from './SignUp';
 export Avatar from './Avatar';
