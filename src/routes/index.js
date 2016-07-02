@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
-/* eslint no-unused-vars: [2, { "argsIgnorePattern": "dispatch|getState" }] */
+/* eslint no-unused-vars: [2, {
+  "argsIgnorePattern": "dispatch|getState",
+  "varsIgnorePattern": "authenticateRoute"
+}] */
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
@@ -18,7 +21,7 @@ export default ({ dispatch, getState }) => {
 
   return (
     <Route path="/" component={Basic}>
-      <IndexRoute component={Home} onEnter={authenticateRoute} />
+      <IndexRoute component={Home} />
       <Route path="login" component={Login} />
       <Route path="sign-up" component={SignUp} />
     </Route>
