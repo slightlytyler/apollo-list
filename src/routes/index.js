@@ -24,10 +24,18 @@ export default ({ dispatch, getState }) => {
       <IndexRoute component={Home} onEnter={authenticateRoute} />
       <Route path="login" component={Login} />
       <Route path="sign-up" component={SignUp} />
-      <Route path=":list">
-        <Route path=":category" />
+      <Route path=":listName">
+        <Route path=":categoryName" />
+      </Route>
+      <Route path="posts">
+        <IndexRoute />
+        <Route path="create">
+          <Route path=":postId">
+            <IndexRoute />
+            <Route path="edit" />
+          </Route>
+        </Route>
       </Route>
     </Route>
   );
 };
-
