@@ -1,9 +1,7 @@
-import { registerToken, clearToken } from 'api/client';
 import { pushRoute } from 'modules/router/actions';
 import * as actionTypes from './actionTypes';
 
 const createAuthAction = actionType => user => dispatch => {
-  registerToken(user.token);
   dispatch({
     type: actionType,
     payload: user,
@@ -14,7 +12,6 @@ const createAuthAction = actionType => user => dispatch => {
 export const login = createAuthAction(actionTypes.LOGIN);
 
 export const logout = () => dispatch => {
-  clearToken();
   dispatch({ type: actionTypes.LOGOUT });
   dispatch(pushRoute('/login'));
 };

@@ -91,7 +91,6 @@ const config = {
     fallback: __node_modules,
     alias: {
       src: __src,
-      api: path.join(__src, 'api'),
       assets: __assets,
       components: path.join(__src, 'components'),
       config: path.join(__src, 'config'),
