@@ -7,40 +7,31 @@ export class SignUp extends Component {
   static propTypes = {
     mutations: PropTypes.shape({
       signUp: PropTypes.func.isRequired,
-      login: PropTypes.func.isRequired,
     }),
     actions: PropTypes.shape({
-      login: PropTypes.func.isRequired,
+      signUp: PropTypes.func.isRequired,
     }),
   };
 
   formSchema = yup.object({
-    username: yup.string().required('is required'),
+    firstName: yup.string().required('is required'),
+    lastName: yup.string().required('is required'),
+    email: yup.string().required('is required'),
     password: yup.string().required('is required'),
-  });
-
-  handleLoginFailure = errors => errors;
-
-  handleLoginSuccess = ({ loginUser }, { username }) => this.props.actions.login({
-    ...loginUser,
-    username,
   });
 
   handleSignUpFailure = errors => errors;
 
-  handleSignUpSuccess = async ({ username, password }) => {
-    const credentials = { username, password };
-    const { data, errors } = await this.props.mutations.login(credentials);
-
-    if (errors) this.handleLoginFailure(errors);
-    else this.handleLoginSuccess(data, credentials);
-  };
+  handleSignUpSuccess = ({ signUp: { session } }) => this.props.actions.signUp({
+    ...session.currentUser,
+    sessionId: session.id,
+  });
 
   handleValidSubmit = async user => {
-    const { errors } = await this.props.mutations.signUp(user);
-
+    const { data, errors } = await this.props.mutations.signUp(user);
+    console.log(data);
     if (errors) this.handleSignUpFailure(errors);
-    else this.handleSignUpSuccess(user);
+    else this.handleSignUpSuccess(data);
   };
 
   render() {
@@ -58,15 +49,23 @@ export class SignUp extends Component {
         >
           <Field
             type={Input}
-            name="username"
-            label="Username"
-            placeholder="Your username"
+            name="firstName"
+            label="First Name"
+          />
+          <Field
+            type={Input}
+            name="lastName"
+            label="Last Name"
+          />
+          <Field
+            type={Input}
+            name="email"
+            label="Email"
           />
           <Field
             type={PasswordInput}
             name="password"
             label="Password"
-            placeholder
           />
           <Button
             type="submit"
@@ -84,36 +83,31 @@ export class SignUp extends Component {
 
 import { connect } from 'react-apollo';
 import gql from 'graphql-tag';
+import { applyClientMutationId } from 'helpers/mutations';
 import { createStructuredActions } from 'helpers/actions';
-import { login } from 'modules/user/actions';
+import { signUp } from 'modules/user/actions';
 
 const mapMutationsToProps = () => ({
   signUp: user => ({
     mutation: gql`
-      mutation SignUp($user: _CreateUserInput!) {
-        createUser(input: $user) {
-          changedUser {
+      mutation SignUp($user: SignUpInput!) {
+        signUp(input: $user) {
+          session {
             id
+            currentUser {
+              id
+              firstName
+              lastName
+            }
           }
         }
       }
     `,
-    variables: { user },
-  }),
-  login: credentials => ({
-    mutation: gql`
-      mutation Login($credentials: _LoginUserInput!) {
-        loginUser(input: $credentials) {
-          id
-          token
-        }
-      }
-    `,
-    variables: { credentials },
+    variables: { user: applyClientMutationId(user) },
   }),
 });
 
-const mapDispatchToProps = createStructuredActions({ login });
+const mapDispatchToProps = createStructuredActions({ signUp });
 
 export default connect({
   mapMutationsToProps,

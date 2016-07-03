@@ -16,15 +16,15 @@ export class Login extends Component {
   };
 
   formSchema = yup.object({
-    username: yup.string().required('is required'),
+    email: yup.string().required('is required'),
     password: yup.string().required('is required'),
   });
 
   handleLoginFailure = errors => errors;
 
-  handleLoginSuccess = ({ loginUser }, { username }) => this.props.actions.login({
+  handleLoginSuccess = ({ loginUser }, { email }) => this.props.actions.login({
     ...loginUser,
-    username,
+    email,
   });
 
   handleValidSubmit = async credentials => {
@@ -49,8 +49,8 @@ export class Login extends Component {
         >
           <Field
             type={Input}
-            name="username"
-            placeholder="Username"
+            name="email"
+            placeholder="Email"
             icon={profileIcon}
           />
           <Field

@@ -1,12 +1,13 @@
-import { registerToken } from 'api/client';
-import { getId, getToken } from './selectors';
+import { getId, getSessionId } from './selectors';
+
+const registerSessionId = sessionId => sessionId;
 
 export const loadToken = (dispatch, getState) => {
   const state = getState();
   const id = getId(state);
 
   if (id) {
-    const token = getToken(state);
-    if (token) registerToken(token);
+    const sessionId = getSessionId(state);
+    if (sessionId) registerSessionId(sessionId);
   }
 };

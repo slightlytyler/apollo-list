@@ -8,9 +8,9 @@ export const getId = createSelector(
   user => user.id
 );
 
-export const getToken = createSelector(
+export const getSessionId = createSelector(
   getSubstate,
-  user => user.token
+  user => user.sessionId
 );
 
 export const getEmail = createSelector(
@@ -25,6 +25,6 @@ export const getName = createSelector(
 );
 
 export const isAuthenticated = createSelector(
-  getToken,
-  token => !!token
+  getSessionId,
+  sessionId => !!sessionId
 );

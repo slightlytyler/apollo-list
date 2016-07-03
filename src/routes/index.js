@@ -14,7 +14,7 @@ export default ({ dispatch, getState }) => {
   const authenticateRoute = (nextState, replace) => {
     const state = getState();
 
-    if (!state.user.token) {
+    if (!state.user.sessionId) {
       replace({ pathname: '/login' });
     }
   };
@@ -24,6 +24,9 @@ export default ({ dispatch, getState }) => {
       <IndexRoute component={Home} onEnter={authenticateRoute} />
       <Route path="login" component={Login} />
       <Route path="sign-up" component={SignUp} />
+      <Route path=":list">
+        <Route path=":category" />
+      </Route>
     </Route>
   );
 };
