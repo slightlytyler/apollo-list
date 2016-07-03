@@ -1,11 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import yup from 'yup';
 import { SmallContainer, Panel, Form, Field, Input, Button } from 'react-portland-ui';
+import { get } from 'helpers/data';
 
 export default class PostsForm extends Component {
   static propTypes = {
-    title: PropTypes.string,
-    text: PropTypes.string,
+    post: PropTypes.shape({
+      title: PropTypes.string,
+      text: PropTypes.string,
+    }),
     onSubmit: PropTypes.func.isRequired,
   };
 
@@ -25,13 +28,13 @@ export default class PostsForm extends Component {
           >
             <Field
               type={Input}
-              defaultValue={this.props.title}
+              defaultValue={get(this.props, 'post.title')}
               name="title"
               label="Title"
             />
             <Field
               type={Input}
-              defaultValue={this.props.text}
+              defaultValue={get(this.props, 'post.text')}
               name="text"
               label="Text"
             />

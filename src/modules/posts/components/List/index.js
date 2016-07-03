@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { get } from 'helpers/data';
 import Item from '../Item';
 
 export class PostsList extends Component {
@@ -6,33 +7,27 @@ export class PostsList extends Component {
     posts: PropTypes.object.isRequired,
   };
 
-  isLoading = () => {
-    try {
-      return this.props.posts.loading || !this.props.posts.session;
-    } catch (e) {
-      return false;
-    }
-  };
+  isLoading = () => get(this.props, 'posts.loading') || !get(this.props, 'posts.session');
 
-  isEmpty = () => {
-    try {
-      return this.props.posts.session.currentUser.localFeed.edges.length === 0;
-    } catch (e) {
-      return true;
-    }
-  }
+  isEmpty = () => get(this.props, 'posts.session.currentUser.localFeed.edges', []).length === 0;
 
   renderLoadingState = () => <h1>Loading Posts...</h1>;
 
   renderEmptyState = () => <h1>No Posts found.</h1>;
 
+  renderItems = () => this.props.posts.session.currentUser.localFeed.edges.map(({ node }) => (
+    <Item key={node.id} title={node.title} text={node.text} />
+  ));
+
   render() {
     if (this.isLoading()) return this.renderLoadingState();
-    else if (this.isEmpty()) return this.renderEmptyState();
+    if (this.isEmpty()) return this.renderEmptyState();
 
-    return this.props.posts.session.currentUser.localFeed.edges.map(({ node }) => (
-      <Item id={node.id} title={node.title} body={node.body} />
-    ));
+    return (
+      <div className="posts__list">
+        {this.renderItems()}
+      </div>
+    );
   }
 }
 
