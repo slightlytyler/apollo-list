@@ -21,7 +21,7 @@ export default ({ dispatch, getState }) => {
 
   return (
     <Route path="/" component={Basic}>
-      <IndexRoute component={Home} />
+      <IndexRoute component={Home} onEnter={authenticateRoute} />
       <Route path="login" component={Login} />
       <Route path="sign-up" component={SignUp} />
     </Route>

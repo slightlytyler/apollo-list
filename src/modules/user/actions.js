@@ -1,17 +1,18 @@
-import { createAsyncAction } from 'helpers/actions';
+import { registerToken, clearToken } from 'api/client';
+import { pushRoute } from 'modules/router/actions';
 import * as actionTypes from './actionTypes';
 
-const asyncAction = createAsyncAction(actionTypes);
+export const login = user => dispatch => {
+  registerToken(user.token);
+  dispatch({
+    type: actionTypes.LOGIN,
+    payload: user,
+  });
+  dispatch(pushRoute('/'));
+};
 
-export const fetchRecord = asyncAction('FETCH_RECORD', {
-  default: () => ({ type: actionTypes.FETCH_RECORD.pending }),
-});
-
-export const login = asyncAction('LOGIN');
-
-export const logout = asyncAction('LOGOUT', {
-  default: () => ({ type: actionTypes.LOGOUT.pending }),
-  success: () => ({ type: actionTypes.LOGOUT.success }),
-});
-
-export const signUp = asyncAction('SIGN_UP');
+export const logout = () => dispatch => {
+  clearToken();
+  dispatch({ type: actionTypes.LOGOUT });
+  dispatch(pushRoute('/login'));
+};

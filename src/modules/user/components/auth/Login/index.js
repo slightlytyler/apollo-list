@@ -7,17 +7,32 @@ import lockIcon from 'icons/lock.svg';
 
 export class Login extends Component {
   static propTypes = {
+    mutations: PropTypes.shape({
+      login: PropTypes.func.isRequired,
+    }),
     actions: PropTypes.shape({
       login: PropTypes.func.isRequired,
     }),
   };
 
   formSchema = yup.object({
-    email: yup.string().required('is required'),
+    username: yup.string().required('is required'),
     password: yup.string().required('is required'),
   });
 
-  handleValidSubmit = user => this.props.actions.login(user.email, user.password);
+  handleLoginFailure = errors => errors;
+
+  handleLoginSuccess = ({ loginUser }, { username }) => this.props.actions.login({
+    ...loginUser,
+    username,
+  });
+
+  handleValidSubmit = async credentials => {
+    const { data, errors } = await this.props.mutations.login(credentials);
+
+    if (errors) this.handleLoginFailure(errors);
+    else this.handleLoginSuccess(data, credentials);
+  };
 
   render() {
     return (
@@ -29,13 +44,13 @@ export class Login extends Component {
       >
         <Form
           schema={this.formSchema}
-          onSubmit={this.props.actions.login}
+          onSubmit={this.handleValidSubmit}
           fluid
         >
           <Field
             type={Input}
-            name="email"
-            placeholder="Email"
+            name="username"
+            placeholder="Username"
             icon={profileIcon}
           />
           <Field
@@ -58,11 +73,28 @@ export class Login extends Component {
   }
 }
 
-import { connect } from 'react-redux';
+import { connect } from 'react-apollo';
+import gql from 'graphql-tag';
 import { createStructuredActions } from 'helpers/actions';
 import { login } from 'modules/user/actions';
 
-export default connect(
-  undefined,
-  createStructuredActions({ login })
-)(Login);
+const mapMutationsToProps = () => ({
+  login: credentials => ({
+    mutation: gql`
+      mutation Login($credentials: _LoginUserInput!) {
+        loginUser(input: $credentials) {
+          id
+          token
+        }
+      }
+    `,
+    variables: { credentials },
+  }),
+});
+
+const mapDispatchToProps = createStructuredActions({ login });
+
+export default connect({
+  mapMutationsToProps,
+  mapDispatchToProps,
+})(Login);

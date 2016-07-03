@@ -6,13 +6,25 @@ export class Home extends Component {
     posts: PropTypes.object.isRequired,
   };
 
-  renderPosts = () => {
-    if (this.props.posts.viewer) {
-      return this.props.posts.viewer.allPosts.edges.map(node => <div>{node.title}</div>);
-    }
+  isLoading = () => this.props.posts.loading || !this.props.posts.viewer;
 
-    return false;
-  }
+  isEmpty = () => !(this.props.posts.viewer || this.props.posts.viewer.allPosts.edges.length);
+
+  renderLoadingState = () => <h1>Loading Posts...</h1>;
+
+  renderEmptyState = () => <h1>No Posts found.</h1>;
+
+  renderPosts = () => {
+    if (this.isLoading()) return this.renderLoadingState();
+    else if (this.isEmpty()) return this.renderEmptyState();
+
+    return this.props.posts.viewer.allPosts.edges.map(({ node }) => (
+      <div key={node.id}>
+        <h1>{node.title}</h1>
+        <p>{node.body}</p>
+      </div>
+    ));
+  };
 
   render() {
     return (
@@ -20,7 +32,7 @@ export class Home extends Component {
         <Box center fit>
           <SmallContainer>
             <Panel fluid>
-              <VerticalBox center fit>
+              <VerticalBox fit>
                 {this.renderPosts()}
               </VerticalBox>
             </Panel>
@@ -51,8 +63,6 @@ const mapQueriesToProps = () => ({
         }
       }
     `,
-    forceFetch: false,
-    returnPartialData: true,
   },
 });
 

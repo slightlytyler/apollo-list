@@ -5,18 +5,43 @@ import Layout from '../Layout';
 
 export class SignUp extends Component {
   static propTypes = {
-    actions: PropTypes.shape({
+    mutations: PropTypes.shape({
       signUp: PropTypes.func.isRequired,
+      login: PropTypes.func.isRequired,
+    }),
+    actions: PropTypes.shape({
+      login: PropTypes.func.isRequired,
     }),
   };
 
   formSchema = yup.object({
-    name: yup.string().required('is required'),
-    email: yup.string().required('is required'),
+    username: yup.string().required('is required'),
     password: yup.string().required('is required'),
   });
 
-  handleValidSubmit = user => this.props.actions.signUp(user);
+  handleLoginFailure = errors => errors;
+
+  handleLoginSuccess = ({ loginUser }, { username }) => this.props.actions.login({
+    ...loginUser,
+    username,
+  });
+
+  handleSignUpFailure = errors => errors;
+
+  handleSignUpSuccess = async ({ username, password }) => {
+    const credentials = { username, password };
+    const { data, errors } = await this.props.mutations.login(credentials);
+
+    if (errors) this.handleLoginFailure(errors);
+    else this.handleLoginSuccess(data, credentials);
+  };
+
+  handleValidSubmit = async user => {
+    const { errors } = await this.props.mutations.signUp(user);
+
+    if (errors) this.handleSignUpFailure(errors);
+    else this.handleSignUpSuccess(user);
+  };
 
   render() {
     return (
@@ -28,20 +53,14 @@ export class SignUp extends Component {
       >
         <Form
           schema={this.formSchema}
-          onSubmit={this.props.actions.signUp}
+          onSubmit={this.handleValidSubmit}
           fluid
         >
           <Field
             type={Input}
-            name="name"
-            label="Name"
-            placeholder="Your name"
-          />
-          <Field
-            type={Input}
-            name="email"
-            label="Email"
-            placeholder="Email address"
+            name="username"
+            label="Username"
+            placeholder="Your username"
           />
           <Field
             type={PasswordInput}
@@ -63,11 +82,40 @@ export class SignUp extends Component {
   }
 }
 
-import { connect } from 'react-redux';
+import { connect } from 'react-apollo';
+import gql from 'graphql-tag';
 import { createStructuredActions } from 'helpers/actions';
-import { signUp } from 'modules/user/actions';
+import { login } from 'modules/user/actions';
 
-export default connect(
-  undefined,
-  createStructuredActions({ signUp })
-)(SignUp);
+const mapMutationsToProps = () => ({
+  signUp: user => ({
+    mutation: gql`
+      mutation SignUp($user: _CreateUserInput!) {
+        createUser(input: $user) {
+          changedUser {
+            id
+          }
+        }
+      }
+    `,
+    variables: { user },
+  }),
+  login: credentials => ({
+    mutation: gql`
+      mutation Login($credentials: _LoginUserInput!) {
+        loginUser(input: $credentials) {
+          id
+          token
+        }
+      }
+    `,
+    variables: { credentials },
+  }),
+});
+
+const mapDispatchToProps = createStructuredActions({ login });
+
+export default connect({
+  mapMutationsToProps,
+  mapDispatchToProps,
+})(SignUp);
