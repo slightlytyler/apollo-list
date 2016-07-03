@@ -2,6 +2,8 @@ import { push } from 'react-router-redux';
 import path from 'path';
 import { getQuery, getPathname } from './selectors';
 
+export { replace, go, goBack, goForward } from 'react-router-redux';
+
 export const pushRoute = push;
 
 export const pushRelativeRoute = route => (dispatch, getState) => dispatch(
