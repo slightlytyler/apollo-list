@@ -22,16 +22,16 @@ export class Login extends Component {
 
   handleLoginFailure = errors => errors;
 
-  handleLoginSuccess = ({ loginUser }, { email }) => this.props.actions.login({
-    ...loginUser,
-    email,
+  handleLoginSuccess = ({ signIn: { session } }) => this.props.actions.login({
+    ...session.currentUser,
+    sessionId: session.id,
   });
 
   handleValidSubmit = async credentials => {
     const { data, errors } = await this.props.mutations.login(credentials);
 
     if (errors) this.handleLoginFailure(errors);
-    else this.handleLoginSuccess(data, credentials);
+    else this.handleLoginSuccess(data);
   };
 
   render() {
@@ -75,20 +75,26 @@ export class Login extends Component {
 
 import { connect } from 'react-apollo';
 import gql from 'graphql-tag';
+import { applyClientMutationId } from 'helpers/mutations';
 import { createStructuredActions } from 'helpers/actions';
 import { login } from 'modules/user/actions';
 
 const mapMutationsToProps = () => ({
   login: credentials => ({
     mutation: gql`
-      mutation Login($credentials: _LoginUserInput!) {
-        loginUser(input: $credentials) {
-          id
-          token
+      mutation Login($credentials: SignInInput!) {
+        signIn(input: $credentials) {
+          session {
+            id
+            currentUser {
+              id
+              fullName
+            }
+          }
         }
       }
     `,
-    variables: { credentials },
+    variables: { credentials: applyClientMutationId(credentials) },
   }),
 });
 

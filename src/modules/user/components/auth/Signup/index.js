@@ -29,7 +29,7 @@ export class SignUp extends Component {
 
   handleValidSubmit = async user => {
     const { data, errors } = await this.props.mutations.signUp(user);
-    console.log(data);
+
     if (errors) this.handleSignUpFailure(errors);
     else this.handleSignUpSuccess(data);
   };
@@ -96,8 +96,7 @@ const mapMutationsToProps = () => ({
             id
             currentUser {
               id
-              firstName
-              lastName
+              fullName
             }
           }
         }
