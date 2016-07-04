@@ -54,6 +54,7 @@ const mapQueriesToProps = () => ({
         }
       }
     `,
+    pollInterval: 1000,
   },
 });
 
