@@ -16,7 +16,14 @@ export class PostsList extends Component {
   renderEmptyState = () => <h1>No Posts found.</h1>;
 
   renderItems = () => this.props.posts.session.currentUser.localFeed.edges.map(({ node }) => (
-    <Item key={node.id} title={node.title} text={node.text} />
+    <Item
+      key={node.id}
+      id={node.id}
+      title={node.title}
+      text={node.text}
+      postedAt={node.createdAt}
+      authorName={node.author.fullName}
+    />
   ));
 
   render() {
@@ -39,7 +46,6 @@ const mapQueriesToProps = () => ({
     query: gql`
       query LocalFeed {
         session {
-          id
           currentUser {
             localFeed {
               edges {
@@ -47,6 +53,10 @@ const mapQueriesToProps = () => ({
                   id
                   title
                   text
+                  createdAt
+                  author {
+                    fullName
+                  }
                 }
               }
             }

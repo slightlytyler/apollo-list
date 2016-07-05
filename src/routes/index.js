@@ -9,7 +9,10 @@ import { Route, IndexRoute } from 'react-router';
 import { Basic } from 'layouts';
 import { Home } from 'components';
 import { Login, SignUp } from 'modules/user/components';
-import { Creator as PostsCreator } from 'modules/posts/components';
+import {
+  Creator as PostsCreator,
+  Viewer as PostsViewer,
+} from 'modules/posts/components';
 
 export default ({ dispatch, getState }) => {
   const authenticateRoute = (nextState, replace) => {
@@ -30,11 +33,10 @@ export default ({ dispatch, getState }) => {
       </Route>
       <Route path="posts">
         <IndexRoute />
-        <Route path="create" component={PostsCreator}>
-          <Route path=":postId">
-            <IndexRoute />
-            <Route path="edit" />
-          </Route>
+        <Route path="create" component={PostsCreator} />
+        <Route path=":postId">
+          <IndexRoute component={PostsViewer} />
+          <Route path="edit" />
         </Route>
       </Route>
     </Route>
