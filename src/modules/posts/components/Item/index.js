@@ -1,11 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { Box } from 'react-portland-ui';
 
 export const PostsItem = ({ id, title, text, postedAt, authorName }) => (
   <div className="posts__item">
-    <h2>
-      <Link to={`/posts/${id}`}>{title}</Link>
-    </h2>
+    <Box justifyContent="space-between" alignItems="center">
+      <h2>
+        <Link to={`/posts/${id}`}>{title}</Link>
+      </h2>
+      <Link to={`/posts/${id}/edit`}>Edit</Link>
+    </Box>
     <h4>{authorName}</h4>
     <span>Posted at: {postedAt}</span>
     <p>{text}</p>

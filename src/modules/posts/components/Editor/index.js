@@ -48,13 +48,16 @@ import { applyClientMutationId } from 'helpers/mutations';
 import { createStructuredActions } from 'helpers/actions';
 import { goBack } from 'modules/router/actions';
 
-const mapQueryToProps = ({ ownProps }) => ({
+const mapQueriesToProps = ({ ownProps }) => ({
   post: {
     query: gql`
-      query node($id: String!) {
-        ... on Post {
-          title
-          text
+      query($id: ID!) {
+        node(id: $id) {
+          ... on Post {
+              id
+              title
+              text
+          }
         }
       }
     `,
@@ -81,7 +84,7 @@ const mapDispatchToProps = createStructuredActions({
 });
 
 export default connect({
-  mapQueryToProps,
+  mapQueriesToProps,
   mapMutationsToProps,
   mapDispatchToProps,
 })(PostsEditor);

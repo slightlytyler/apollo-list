@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import yup from 'yup';
 import { SmallContainer, Panel, Form, Field, Input, Button } from 'react-portland-ui';
-import { get } from 'helpers/data';
 
 export default class PostsForm extends Component {
   static propTypes = {
@@ -23,18 +22,17 @@ export default class PostsForm extends Component {
         <Panel fluid>
           <Form
             schema={this.formSchema}
+            defaultValue={this.props.post}
             onSubmit={this.props.onSubmit}
             fluid
           >
             <Field
               type={Input}
-              defaultValue={get(this.props, 'post.title')}
               name="title"
               label="Title"
             />
             <Field
               type={Input}
-              defaultValue={get(this.props, 'post.text')}
               name="text"
               label="Text"
             />

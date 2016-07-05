@@ -11,6 +11,7 @@ import { Home } from 'components';
 import { Login, SignUp } from 'modules/user/components';
 import {
   Creator as PostsCreator,
+  Editor as PostsEditor,
   Viewer as PostsViewer,
 } from 'modules/posts/components';
 
@@ -18,9 +19,7 @@ export default ({ dispatch, getState }) => {
   const authenticateRoute = (nextState, replace) => {
     const state = getState();
 
-    if (!state.user.sessionId) {
-      replace({ pathname: '/login' });
-    }
+    if (!state.user.sessionId) replace({ pathname: '/login' });
   };
 
   return (
@@ -36,7 +35,7 @@ export default ({ dispatch, getState }) => {
         <Route path="create" component={PostsCreator} />
         <Route path=":postId">
           <IndexRoute component={PostsViewer} />
-          <Route path="edit" />
+          <Route path="edit" component={PostsEditor} />
         </Route>
       </Route>
     </Route>
