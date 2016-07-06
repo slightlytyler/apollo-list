@@ -40,7 +40,7 @@ const mapMutationsToProps = () => ({
     mutation: gql`
       mutation CreatePost($post: CreatePostInput!) {
         createPost(input: $post) {
-          changePost {
+          changedPost {
             id
             title
             text

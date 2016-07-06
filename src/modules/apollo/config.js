@@ -1,3 +1,4 @@
 export default {
-  static: true,
+  shape: {},
+  persist: true,
 };

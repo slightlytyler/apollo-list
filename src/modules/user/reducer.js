@@ -6,9 +6,6 @@ export default (state = {}, { type, payload }) => {
     case actionTypes.SIGN_UP:
       return Object.assign({}, state, payload);
 
-    case actionTypes.LOGOUT:
-      return {};
-
     default:
       return state;
   }

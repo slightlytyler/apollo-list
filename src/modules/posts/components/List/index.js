@@ -23,6 +23,7 @@ export class PostsList extends Component {
       text={node.text}
       postedAt={node.createdAt}
       authorName={node.author.fullName}
+      currentUserIsAuthor={this.props.posts.session.currentUser.id === node.author.id}
     />
   ));
 
@@ -47,6 +48,7 @@ const mapQueriesToProps = () => ({
       query LocalFeed {
         session {
           currentUser {
+            id
             localFeed {
               edges {
                 node {
@@ -55,6 +57,7 @@ const mapQueriesToProps = () => ({
                   text
                   createdAt
                   author {
+                    id
                     fullName
                   }
                 }

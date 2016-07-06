@@ -8,7 +8,7 @@ const AuthLayout = ({ children, title, transitionTo, altPrompt, altCallToAction 
       <SmallContainer marginBottom="10%">
         <VerticalBox className="auth" alignItems="center" fit>
           <header className="header">
-            <section className="primary">React Starter</section>
+            <section className="primary">Apollo List</section>
             <section className="secondary">{title}</section>
           </header>
 
