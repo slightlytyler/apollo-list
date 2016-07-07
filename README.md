@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/slightlytyler/apollo-list.svg?branch=master)](https://travis-ci.org/slightlytyler/apollo-list)
 
+A craigslist lookalike built with React + Redux + Apollo
+Checkout the backend [Gestalt List](https://github.com/jacobhausler/gestalt-list)
+
 ## Install
 
 ```
