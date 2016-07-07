@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/slightlytyler/apollo-list.svg?branch=master)](https://travis-ci.org/slightlytyler/apollo-list)
 
 A craigslist like app built with [React](https://facebook.github.io/react/) + [Redux](http://redux.js.org/index.html) + [Apollo Client](http://docs.apollostack.com/apollo-client/)
+
 Checkout the backend [Gestalt List](https://github.com/jacobhausler/gestalt-list)
 
 ## Install
