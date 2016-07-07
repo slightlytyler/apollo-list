@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/slightlytyler/apollo-list.svg?branch=master)](https://travis-ci.org/slightlytyler/apollo-list)
 
-A craigslist lookalike built with React + Redux + Apollo
+A craigslist like app built with [React](https://facebook.github.io/react/) + [Redux](http://redux.js.org/index.html) + [Apollo Client](http://docs.apollostack.com/apollo-client/)
 Checkout the backend [Gestalt List](https://github.com/jacobhausler/gestalt-list)
 
 ## Install
@@ -33,9 +33,9 @@ npm run test
 npm run test:watch
 ```
 
-Packages can be tested via their `test.js` file.
+All files in `src` named `test.js` or ending with `.test.js` are aggregated and run. Tests should be colocated with their source files.
 
-Tools you'll need to be familiar with: [karma](https://karma-runner.github.io/1.0/index.html), [mocha](https://mochajs.org/), [chai](http://chaijs.com/), [sinon](http://sinonjs.org/), [enzyme](https://github.com/airbnb/enzyme), [sinon-chai](https://github.com/domenic/sinon-chai), [chai-enzyme](https://github.com/producthunt/chai-enzyme).
+You will need to familiarize yourself with [karma](https://karma-runner.github.io/1.0/index.html), [mocha](https://mochajs.org/), [chai](http://chaijs.com/), [sinon](http://sinonjs.org/), [enzyme](https://github.com/airbnb/enzyme), [sinon-chai](https://github.com/domenic/sinon-chai), [chai-enzyme](https://github.com/producthunt/chai-enzyme).
 
 After starting the tests **don't** close the spawned chrome browser, just minimize it.
 
