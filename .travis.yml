@@ -2,13 +2,16 @@ language: node_js
 sudo: true
 dist: trusty
 node_js:
-  - "5.0"
+- '5.0'
 script: npm run build
 before_install:
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - export DISPLAY=:99.0
-  - sudo apt-get update
-  - sudo apt-get install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
-  - sh -e /etc/init.d/xvfb start
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
+- sh -e /etc/init.d/xvfb start
+notifications:
+  slack:
+    secure: jSDSOOvBBPsEXkoSS9Dtv5Pi1SeDCG9mIRq/zji4z76UlfeO+6XwzBw/xDjifFa4MOnSUiTEWcKdWiX/brPgBTax/2G7+CnMqFTebCGu7lg6SC3KdAsB3c/CavvXoC17ikY9krRC1AVauEUU/T/FZd3G8Kp4FlYSBMpU937f2+ZaF8L6+Jf5JGLPutkdPSgHX+0UcXd2HxTwmbHoDHZ11Mtz95xGvUg4YLltVUwNOq3KV760Ew8VJJ62zSlqGM7/7ImXgTog8l6IliTEHS+ZtHN9pzSV0VUCUDCt2FEId4xXpUqJzmnuTiJKPKzNGt0W+nN/sUkkvz15HFlEdPiB/JdWGAEh/CyoQRZpEeTJtUm8IQeX6MthpnhOYeAyH82Hl0xmbrAyhEaYhZQYFggJJvnFj8E9bUiFhAGUBlJDa2U1OQstDwDFTWQQr4N0OyRFpoZrbTAqU6HtFpuJ4jrirJ3PZWN4UBakkgjpLN+CAwEE366dy4e9Ae9IaYzg/m6Y2aUO2iRZtkcHrMQhAA8AE9HVSv0qjflIyJGgx9vHpW2U/yMI3wisvbygKTP852ydaOBOajyuKs+A0uYeyw77A994iY0CAnB105LssRGFmh672F9Fveg7ACPeglu4BTah5I/L9etLTxBz2f25ZkgsXYvcUc/n1srSmTvKZnyY13U=
