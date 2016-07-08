@@ -12,22 +12,22 @@ export class PostsEditor extends Component {
       }),
     }).isRequired,
     mutations: PropTypes.shape({
-      updatePost: PropTypes.func.isRequired,
+      update: PropTypes.func.isRequired,
     }),
     actions: PropTypes.shape({
       transitionBack: PropTypes.func.isRequired,
     }),
   };
 
-  handleUpdatePostFailure = errors => errors;
+  handleUpdateFailure = errors => errors;
 
-  handleUpdatePostSuccess = () => this.props.actions.transitionBack();
+  handleUpdateSuccess = () => this.props.actions.transitionBack();
 
   handleValidSubmit = async post => {
-    const { errors } = await this.props.mutations.updatePost(post);
+    const { errors } = await this.props.mutations.update(post);
 
-    if (errors) this.handleUpdatePostFailure(errors);
-    else this.handleUpdatePostSuccess();
+    if (errors) this.handleUpdateFailure(errors);
+    else this.handleUpdateSuccess();
   };
 
   render() {
@@ -66,7 +66,7 @@ const mapQueriesToProps = ({ ownProps }) => ({
 });
 
 const mapMutationsToProps = () => ({
-  updatePost: post => ({
+  update: post => ({
     mutation: gql`
       mutation UpdatePost($post: UpdatePostInput!) {
         updatePost(input: $post) {
