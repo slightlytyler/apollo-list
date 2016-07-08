@@ -5,9 +5,10 @@
 }] */
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
+import authenticateRoute from './authenticateRoute';
 
 import { Basic } from 'layouts';
-import { Home } from 'components';
+import { Root as Home } from './home';
 import { Login, SignUp } from 'modules/user/components';
 import {
   Creator as PostsCreator,
@@ -16,18 +17,15 @@ import {
 } from 'modules/posts/components';
 
 export default ({ dispatch, getState }) => {
-  const authenticateRoute = (nextState, replace) => {
-    const state = getState();
-
-    if (!state.user.sessionId) replace({ pathname: '/login' });
-  };
+  const authenticate = authenticateRoute(getState);
 
   return (
     <Route path="/" component={Basic}>
-      <IndexRoute component={Home} onEnter={authenticateRoute} />
+      <IndexRoute component={Home} onEnter={authenticate} />
       <Route path="login" component={Login} />
       <Route path="sign-up" component={SignUp} />
       <Route path="l/:listName">
+        <IndexRoute />
         <Route path=":categoryName" />
       </Route>
       <Route path="posts">

@@ -39,6 +39,7 @@ export class PostsViewer extends Component {
   renderHeader = () => (
     <Panel fluid>
       <Link to={`/posts/${this.props.post.node.id}/edit`}>Edit post</Link>
+      &nbsp;
       <a href="#" onClick={this.handleDelete}>Delete post</a>
     </Panel>
   );
@@ -84,6 +85,7 @@ const mapQueriesToProps = ({ ownProps }) => ({
       }
     `,
     variables: { id: ownProps.params.postId },
+    forceFetch: true,
   },
 });
 
