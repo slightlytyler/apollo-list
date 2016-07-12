@@ -10,8 +10,6 @@ import authenticateRoute from './authenticateRoute';
 import { Basic } from 'layouts';
 import { Root as Home } from './home';
 import { Login, SignUp } from 'modules/user/components';
-import { Root as List } from './list';
-import { Root as Category } from './category';
 import {
   Creator as PostsCreator,
   Editor as PostsEditor,
@@ -27,8 +25,8 @@ export default ({ dispatch, getState }) => {
       <Route path="login" component={Login} />
       <Route path="sign-up" component={SignUp} />
       <Route path="l/:listName">
-        <IndexRoute component={List} />
-        <Route path=":categoryName" component={Category} />
+        <IndexRoute />
+        <Route path=":categoryName" />
       </Route>
       <Route path="posts">
         <IndexRoute />
