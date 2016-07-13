@@ -23,7 +23,7 @@ const FilterHeader = ({ text, svg }) => (
       <Icon className="element" svg={svg} />
     </div>
     <div className="text">
-      {text}
+      <span>{text}</span>
     </div>
     <div className="arrow">
       <Icon className="element" svg={caretDownIcon} />
@@ -42,7 +42,7 @@ const FilterDropdown = ({ text, svg }) => (
       <Icon className="element" svg={svg} />
     </div>
     <div className="text">
-      {text}
+      <span>{text}</span>
     </div>
     <div className="arrow">
       <Icon className="element" svg={caretDownIcon} />
@@ -77,15 +77,17 @@ export default () => (
           <FilterHeader text="PRICE" svg={moneyBagIcon} />
         </FilterSection>
       </ul>
-      <Button
-        background="red-a"
-        icon={undoIcon}
-        iconJustify="center"
-        rounded
-        thin
-      >
-        Reset Search
-      </Button>
+      <div className="reset">
+        <Button
+          background="red-a"
+          icon={undoIcon}
+          iconJustify="center"
+          rounded
+          thin
+        >
+          Reset Search
+        </Button>
+      </div>
     </div>
     <div className="content">
     </div>
