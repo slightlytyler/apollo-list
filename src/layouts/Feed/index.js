@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Icon, Button } from 'react-portland-ui';
+import { Icon, CheckboxGroup, Badge, Button } from 'react-portland-ui';
 import logoImage from 'images/logo.svg';
 import caretDownIcon from 'icons/caret-down.svg';
 import locationPinIcon from 'icons/location-pin.svg';
 import tagIcon from 'icons/tag.svg';
+import plusOutlineIcon from 'icons/plus-outline.svg';
 import moneyBagIcon from 'icons/money-bag.svg';
 import undoIcon from 'icons/undo.svg';
 
@@ -24,9 +25,6 @@ const FilterHeader = ({ text, svg }) => (
     </div>
     <div className="text">
       <span>{text}</span>
-    </div>
-    <div className="arrow">
-      <Icon className="element" svg={caretDownIcon} />
     </div>
   </div>
 );
@@ -55,8 +53,39 @@ FilterDropdown.propTypes = {
   svg: PropTypes.string.isRequired,
 };
 
+const FilterListItemLabel = ({ option }) => (
+  <div className="filter__list__item__label">
+    <span className="label">
+      {option.label}
+    </span>
+    <Badge text="124" />
+  </div>
+);
+
+FilterListItemLabel.propTypes = {
+  option: PropTypes.shape({
+    label: PropTypes.string,
+  }),
+};
+
 const FilterList = () => (
-  <div>List</div>
+  <div className="filter__list">
+    <CheckboxGroup
+      className="checkboxes"
+      name="baseFilters"
+      options={[
+        { value: 'cars', label: 'Cars' },
+        { value: 'trucks', label: 'Trucks' },
+        { value: 'parts', label: 'Parts' },
+      ]}
+      labelGetter={FilterListItemLabel}
+      vertical
+    />
+    <div className="show-more">
+      <Icon className="icon" svg={plusOutlineIcon} />
+      <span className="text">Show 36 more</span>
+    </div>
+  </div>
 );
 
 export default () => (
