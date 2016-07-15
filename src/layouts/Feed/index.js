@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Icon, CheckboxGroup, Badge, Button } from 'react-portland-ui';
+import { Icon, CheckboxGroup, Badge, Input, Button } from 'react-portland-ui';
 import logoImage from 'images/logo.svg';
 import caretDownIcon from 'icons/caret-down.svg';
 import locationPinIcon from 'icons/location-pin.svg';
@@ -119,6 +119,19 @@ export default () => (
       </div>
     </div>
     <div className="content">
+      <header className="header">
+        <Input placeholder="Search" />
+        <nav className="navigation">
+          <section className="item">
+          </section>
+          <section className="item">
+          </section>
+          <section className="item">
+          </section>
+        </nav>
+      </header>
+      <section className="controls">
+      </section>
     </div>
   </div>
 );

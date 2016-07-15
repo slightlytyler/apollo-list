@@ -5,15 +5,15 @@
   top: 0
   width: 100vw
   height: 100vh
+  background-image:
+    linear-gradient(-180deg, alpha(white, 0.9) 0%,
+    alpha(white, 0.9) 100%), linear-gradient(-180deg, #3F6E7D 0%, #4E3F45 100%)
 
   & > .sidebar
     position: relative
     overflow: auto
     width: 21em
     height: 100%
-    background-image:
-      linear-gradient(-180deg, alpha(white, 0.9) 0%,
-      alpha(white, 0.9) 100%), linear-gradient(-180deg, #3F6E7D 0%, #4E3F45 100%)
 
     & > .header
       display: flex
@@ -83,6 +83,7 @@
     overflow-y: scroll
     flex: 1
     height: 100%
+    background-color: white
     box-shadow: 0 7px 10px 0px alpha($dark-blue-a, 0.2)
 
 .filter__list
