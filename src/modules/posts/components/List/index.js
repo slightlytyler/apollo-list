@@ -15,25 +15,25 @@ export class PostsList extends Component {
 
   renderEmptyState = () => <h1>No Posts found.</h1>;
 
-  renderItems = () => this.props.posts.session.currentUser.localFeed.edges.map(({ node }) => (
-    <Item
-      key={node.id}
-      id={node.id}
-      title={node.title}
-      text={node.text}
-      postedAt={node.createdAt}
-      authorName={node.author.fullName}
-      currentUserIsAuthor={this.props.posts.session.currentUser.id === node.author.id}
-    />
-  ));
-
   render() {
-    if (this.isLoading()) return this.renderLoadingState();
-    if (this.isEmpty()) return this.renderEmptyState();
+    // if (this.isLoading()) return this.renderLoadingState();
+    // if (this.isEmpty()) return this.renderEmptyState();
 
     return (
       <div className="posts__list">
-        {this.renderItems()}
+        <section className="day">
+          <header className="header">Friday July 8</header>
+          <ul className="list">
+            {Array.from({ length: 20 }).map((_, index) => (
+              <Item
+                key={index}
+                pictures={[]}
+                starred
+                title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              />
+            ))}
+          </ul>
+        </section>
       </div>
     );
   }
@@ -54,7 +54,6 @@ const mapQueriesToProps = () => ({
                 node {
                   id
                   title
-                  text
                   createdAt
                   author {
                     id
