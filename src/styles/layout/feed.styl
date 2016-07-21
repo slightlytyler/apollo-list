@@ -19,7 +19,7 @@
       display: flex
       justify-content: center
       align-items: center
-      padding: 1.5em 0
+      padding: 1.7em 0
       border-bottom: 2px solid rgba(black, 0.05)
 
       .logo
@@ -80,11 +80,90 @@
 
   & > .content
     z-index: 1
-    overflow-y: scroll
+    overflow-y: auto
     flex: 1
     height: 100%
+    padding: 0 2em
     background-color: white
     box-shadow: 0 7px 10px 0px alpha($dark-blue-a, 0.2)
+
+    & > .header
+      display: flex
+      align-items: center
+      border-bottom: 2px solid rgba(black, 0.05)
+
+      .navigation
+        display: flex
+
+        .item
+          overflow: hidden
+          display: flex
+          justify-content: center
+          align-items: center
+          width: 3em
+          height: 3em
+          border: 1px solid $light-gray-b
+          border-radius: 50%
+
+          &:not(:last-child)
+            margin-right: 1.5em
+
+          .icon
+            height: 1.5em
+            color: $dark-gray-a
+
+          .image
+            width: 100%
+            height: 100%
+
+    & > .controls
+      display: flex
+      justify-content: space-between
+      align-items: center
+      height: 5em
+
+      .feedback
+        .bold
+          font-weight: 600
+
+      .view-options
+        list-style: none
+        display: flex
+        align-items: flex-start
+        padding: 0
+        margin: 0 2em 0 auto
+
+        .item
+          display: flex
+          flex: 1
+          flex-direction: column
+          align-items: center
+
+          &:not(:last-child)
+            margin-right: 1em
+
+          &.active .icon
+            color: $aqua-b
+
+          .text
+            font-size: .7em
+            color: $dark-gray-a
+
+          .icon
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 2em
+            height: 2em
+            color: $light-gray-b
+
+            .element
+              width: 100%
+              margin: 0 20%
+
+      .order-dropdown
+        .inner
+          min-width: 12em
 
 .filter__list
   padding-left: 2em

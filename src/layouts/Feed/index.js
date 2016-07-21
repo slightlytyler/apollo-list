@@ -7,6 +7,15 @@ import tagIcon from 'icons/tag.svg';
 import plusOutlineIcon from 'icons/plus-outline.svg';
 import moneyBagIcon from 'icons/money-bag.svg';
 import undoIcon from 'icons/undo.svg';
+import searchIcon from 'icons/search.svg';
+import messageIcon from 'icons/message.svg';
+import startFilledIcon from 'icons/star-filled.svg';
+import startOutlineIcon from 'icons/star-outline.svg';
+import profilePlaceholderImage from 'images/profile-placeholder.jpg';
+import listIcon from 'icons/list.svg';
+import pictureIcon from 'icons/picture.svg';
+import gridIcon from 'icons/grid.svg';
+import cameraIcon from 'icons/camera.svg';
 
 const FilterSection = ({ children }) => (
   <li className="section">
@@ -120,18 +129,82 @@ export default () => (
     </div>
     <div className="content">
       <header className="header">
-        <Input placeholder="Search" />
+        <Input
+          icon={searchIcon}
+          placeholder="Search"
+          size="large"
+          fluid
+          transparent
+        />
         <nav className="navigation">
           <section className="item">
+            <Icon className="icon" svg={messageIcon} />
           </section>
           <section className="item">
+            <Icon className="icon" svg={startFilledIcon} />
           </section>
           <section className="item">
+            <img alt="profile" className="image" src={profilePlaceholderImage} />
           </section>
         </nav>
       </header>
-      <section className="controls">
-      </section>
+      <div className="controls">
+        <section className="feedback">
+          Showing <span className="bold">476</span> results for <span className="bold">"Tesla"</span>
+        </section>
+        <ul className="view-options">
+          <li className="item active">
+            <div className="text">List</div>
+            <div className="icon">
+              <Icon className="element" svg={listIcon} />
+            </div>
+          </li>
+          <li className="item">
+            <div className="text">Thumb</div>
+            <div className="icon">
+              <Icon className="element" svg={pictureIcon} />
+            </div>
+          </li>
+          <li className="item">
+            <div className="text">Gallery</div>
+            <div className="icon">
+              <Icon className="element" svg={gridIcon} />
+            </div>
+          </li>
+          <li className="item">
+            <div className="text">Map</div>
+            <div className="icon">
+              <Icon className="element" svg={locationPinIcon} />
+            </div>
+          </li>
+        </ul>
+        <Button
+          className="order-dropdown"
+          ghost
+          rounded
+          thin
+        >
+          Relevance
+        </Button>
+      </div>
+      <div className="posts__list">
+        <section className="day">
+          <header className="header">Friday July 8</header>
+          <ul className="list">
+            {Array.from({ length: 20 }).map((_, index) => (
+              <li key={index} className="item">
+                <section className="actions">
+                  <Icon className="item" svg={startOutlineIcon} />
+                  <Icon className="item" svg={cameraIcon} />
+                </section>
+                <section className="title">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed egestas sem.
+                </section>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
     </div>
   </div>
 );

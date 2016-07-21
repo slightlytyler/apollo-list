@@ -82,7 +82,7 @@ const config = {
         exclude: __images,
       },
       {
-        test: /\.svg|\.png$/,
+        test: /\.svg|\.png|\.jpg$/,
         loader: 'file?name=images/[name].[ext]',
         exclude: __icons,
       },
