@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Icon, CheckboxGroup, Badge, Input, Button } from 'react-portland-ui';
+import { Icon, CheckboxGroup, Badge, Button } from 'react-portland-ui';
+import Header from './Header';
+import Controls from './Controls';
 import { List as PostsList } from 'modules/posts/components';
 import logoImage from 'images/logo.svg';
 import caretDownIcon from 'icons/caret-down.svg';
@@ -8,13 +10,6 @@ import tagIcon from 'icons/tag.svg';
 import plusOutlineIcon from 'icons/plus-outline.svg';
 import moneyBagIcon from 'icons/money-bag.svg';
 import undoIcon from 'icons/undo.svg';
-import searchIcon from 'icons/search.svg';
-import messageIcon from 'icons/message.svg';
-import startFilledIcon from 'icons/star-filled.svg';
-import profilePlaceholderImage from 'images/profile-placeholder.jpg';
-import listIcon from 'icons/list.svg';
-import pictureIcon from 'icons/picture.svg';
-import gridIcon from 'icons/grid.svg';
 
 const FilterSection = ({ children }) => (
   <li className="section">
@@ -127,66 +122,8 @@ export default () => (
       </div>
     </div>
     <div className="content">
-      <header className="header">
-        <Input
-          icon={searchIcon}
-          placeholder="Search"
-          size="large"
-          fluid
-          transparent
-        />
-        <nav className="navigation">
-          <section className="item">
-            <Icon className="icon" svg={messageIcon} />
-          </section>
-          <section className="item">
-            <Icon className="icon" svg={startFilledIcon} />
-          </section>
-          <section className="item">
-            <img alt="profile" className="image" src={profilePlaceholderImage} />
-          </section>
-        </nav>
-      </header>
-      <div className="controls">
-        <section className="feedback">
-          Showing <span className="bold">476</span> results for
-          &nbsp;<span className="bold">"Tesla"</span>
-        </section>
-        <ul className="view-options">
-          <li className="item active">
-            <div className="text">List</div>
-            <div className="icon">
-              <Icon className="element" svg={listIcon} />
-            </div>
-          </li>
-          <li className="item">
-            <div className="text">Thumb</div>
-            <div className="icon">
-              <Icon className="element" svg={pictureIcon} />
-            </div>
-          </li>
-          <li className="item">
-            <div className="text">Gallery</div>
-            <div className="icon">
-              <Icon className="element" svg={gridIcon} />
-            </div>
-          </li>
-          <li className="item">
-            <div className="text">Map</div>
-            <div className="icon">
-              <Icon className="element" svg={locationPinIcon} />
-            </div>
-          </li>
-        </ul>
-        <Button
-          className="order-dropdown"
-          ghost
-          rounded
-          thin
-        >
-          Relevance
-        </Button>
-      </div>
+      <Header />
+      <Controls />
       <PostsList />
     </div>
   </div>
