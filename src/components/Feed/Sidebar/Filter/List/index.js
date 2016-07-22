@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import { Icon, CheckboxGroup, Badge } from 'react-portland-ui';
 import plusOutlineIcon from 'icons/plus-outline.svg';
 
-const FilterListItemLabel = ({ option }) => (
-  <div className="filter__list__item__label">
+const Label = ({ option }) => (
+  <div className="filter__list__label">
     <span className="label">
       {option.label}
     </span>
@@ -11,7 +11,7 @@ const FilterListItemLabel = ({ option }) => (
   </div>
 );
 
-FilterListItemLabel.propTypes = {
+Label.propTypes = {
   option: PropTypes.shape({
     label: PropTypes.string,
   }),
@@ -27,7 +27,7 @@ export default () => (
         { value: 'trucks', label: 'Trucks' },
         { value: 'parts', label: 'Parts' },
       ]}
-      labelGetter={FilterListItemLabel}
+      labelGetter={Label}
       vertical
     />
     <div className="show-more">

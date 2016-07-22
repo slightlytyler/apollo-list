@@ -7,7 +7,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import authenticateRoute from './authenticateRoute';
 
-import { Feed } from 'layouts';
+import { Feed } from 'components';
 import { Root as Home } from './home';
 import { Login, SignUp } from 'modules/user/components';
 import {
@@ -28,8 +28,8 @@ export default ({ dispatch, getState }) => {
         <IndexRoute />
         <Route path=":categoryName" />
       </Route>
-      <Route path="posts" component={Feed}>
-        <IndexRoute />
+      <Route path="posts">
+        <IndexRoute component={Feed} />
         <Route path="create" component={PostsCreator} />
         <Route path=":postId">
           <IndexRoute component={PostsViewer} />
