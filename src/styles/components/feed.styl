@@ -1,0 +1,181 @@
+.feed
+  position: fixed
+  display: flex
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  background-image:
+    linear-gradient(-180deg, alpha(white, 0.9) 0%,
+    alpha(white, 0.9) 100%), linear-gradient(-180deg, #3F6E7D 0%, #4E3F45 100%)
+
+  & > .sidebar
+    position: relative
+    overflow: auto
+    width: 21em
+    height: 100%
+
+    & > .header
+      display: flex
+      justify-content: center
+      align-items: center
+      padding: 1.7em 0
+      border-bottom: 2px solid rgba(black, 0.05)
+
+      .logo
+        width: 60%
+
+    .filters
+      list-style: none
+      padding-left: 2em
+
+      .section
+        border-bottom: 2px solid rgba(black, 0.05)
+
+        & > *
+          padding-right: 2em
+
+        .header, .dropdown
+          position: relative
+          height: 3.5em
+
+          &, & > *
+            display: flex
+
+          & > *
+            align-items: center
+            height: 100%
+            // background-color: alpha(black, 0.36)
+
+          .icon, .arrow
+            width: 2em
+
+          .icon
+            justify-content: flex-start
+            color: $aqua-b
+
+            .element
+              width: 100%
+              height: 100%
+              max-width: 1.5em
+              max-height: 1.5em
+
+          .text
+            flex: 1
+            justify-content: flex-start
+            font-size: .9em
+            color: alpha(black, 0.6)
+
+          .arrow
+            justify-content: flex-end
+            color: alpha(black, 0.28)
+
+            .element
+              width: 1em
+
+    .reset
+      display: flex
+      justify-content: center
+      padding-top: 1.5em
+
+  & > .content
+    z-index: 1
+    overflow-y: auto
+    flex: 1
+    height: 100%
+    padding: 0 2em
+    background-color: white
+    box-shadow: 0 7px 10px 0px alpha($dark-blue-a, 0.2)
+
+    & > .header
+      display: flex
+      align-items: center
+      border-bottom: 2px solid rgba(black, 0.05)
+
+    & > .controls
+      display: flex
+      justify-content: space-between
+      align-items: center
+      height: 5em
+
+      .feedback
+        .bold
+          font-weight: 600
+
+      .view-options
+        list-style: none
+        display: flex
+        align-items: flex-start
+        padding: 0
+        margin: 0 2em 0 auto
+
+        .item
+          display: flex
+          flex: 1
+          flex-direction: column
+          align-items: center
+
+          &:not(:last-child)
+            margin-right: 1em
+
+          &.active .icon
+            color: $aqua-b
+
+          .text
+            font-size: .7em
+            color: $dark-gray-a
+
+          .icon
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 2em
+            height: 2em
+            color: $light-gray-b
+
+            .element
+              width: 100%
+              margin: 0 20%
+
+      .order-dropdown
+        .inner
+          min-width: 12em
+
+.filter__list
+  padding-left: 2em
+
+  .pui--checkbox
+    .body
+      background-color: transparent
+      border-color: $aqua-b
+
+    .check
+      color: $aqua-b
+
+    .label
+      color: alpha(black, 0.6)
+
+  .show-more
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    padding: 1em 0
+    color: $aqua-b
+    cursor: pointer
+
+    .icon
+      width: 1.5em
+      margin-left: -.125em
+      margin-right: .5em
+
+    .text
+      font-size: .9em
+
+.filter__list__label
+  display: flex
+  flex: 1
+  justify-content: space-between
+  align-items: center
+
+  .pui--badge
+    color: alpha(black, 0.28)

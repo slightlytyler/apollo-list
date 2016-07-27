@@ -1,30 +1,36 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import { Box } from 'react-portland-ui';
+import classnames from 'classnames';
+import { Icon } from 'react-portland-ui';
+import { Link } from 'modules/router/components';
+import startOutlineIcon from 'icons/star-outline.svg';
+import cameraIcon from 'icons/camera.svg';
 
-export const PostsItem = ({ id, title, text, postedAt, authorName, currentUserIsAuthor }) => (
-  <div className="posts__item">
-    <Box justifyContent="space-between" alignItems="center">
-      <h2>
-        <Link to={`/posts/${id}`}>{title}</Link>
-      </h2>
-      {currentUserIsAuthor && <Link to={`/posts/${id}/edit`}>Edit</Link>}
-    </Box>
-    <Box justifyContent="space-between" alignItems="center">
-      <h4>{authorName}</h4>
-      <span>Posted {postedAt}</span>
-    </Box>
-    <p>{text}</p>
-  </div>
+export const PostsItem = ({ id, pictures, starred, title }) => (
+  <li className="posts__item">
+    <section className="actions">
+      <Icon
+        className={classnames('item star', { active: starred })}
+        svg={startOutlineIcon}
+      />
+      <Icon
+        className={classnames('item pictures', { disabled: !pictures.length })}
+        svg={cameraIcon}
+      />
+    </section>
+    <Link to={`/posts/${id}`} className="title">
+      {title}
+    </Link>
+  </li>
 );
 
 PostsItem.propTypes = {
+  actions: PropTypes.shape({
+    view: PropTypes.func.isRequired,
+  }),
   id: PropTypes.string.isRequired,
+  pictures: PropTypes.arrayOf(PropTypes.string),
+  starred: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  postedAt: PropTypes.string.isRequired,
-  authorName: PropTypes.string.isRequired,
-  currentUserIsAuthor: PropTypes.bool.isRequired,
 };
 
 export default PostsItem;

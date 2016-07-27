@@ -7,11 +7,9 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import authenticateRoute from './authenticateRoute';
 
-import { Basic } from 'layouts';
+import { Feed } from 'components';
 import { Root as Home } from './home';
 import { Login, SignUp } from 'modules/user/components';
-import { Root as List } from './list';
-import { Root as Category } from './category';
 import {
   Creator as PostsCreator,
   Editor as PostsEditor,
@@ -22,16 +20,16 @@ export default ({ dispatch, getState }) => {
   const authenticate = authenticateRoute(getState);
 
   return (
-    <Route path="/" component={Basic}>
+    <Route path="/">
       <IndexRoute component={Home} onEnter={authenticate} />
       <Route path="login" component={Login} />
       <Route path="sign-up" component={SignUp} />
       <Route path="l/:listName">
-        <IndexRoute component={List} />
-        <Route path=":categoryName" component={Category} />
+        <IndexRoute />
+        <Route path=":categoryName" />
       </Route>
       <Route path="posts">
-        <IndexRoute />
+        <IndexRoute component={Feed} />
         <Route path="create" component={PostsCreator} />
         <Route path=":postId">
           <IndexRoute component={PostsViewer} />

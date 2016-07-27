@@ -11,6 +11,7 @@ const __root = path.join(__dirname, '../../');
 const __src = path.join(__root, 'src');
 const __assets = path.join(__src, 'assets');
 const __icons = path.join(__assets, 'icons');
+const __images = path.join(__assets, 'images');
 const __static = path.join(__src, 'static');
 const __dist = path.join(__root, 'dist');
 const __node_modules = path.join(__root, 'node_modules');
@@ -78,11 +79,11 @@ const config = {
       {
         test: /\.svg$/,
         loader: 'raw',
-        incude: __icons,
+        exclude: __images,
       },
       {
-        test: /\.svg|\.png$/,
-        loader: 'url',
+        test: /\.svg|\.png|\.jpg$/,
+        loader: 'file?name=images/[name].[ext]',
         exclude: __icons,
       },
     ],
@@ -96,6 +97,7 @@ const config = {
       config: path.join(__src, 'config'),
       helpers: path.join(__src, 'helpers'),
       icons: __icons,
+      images: __images,
       layouts: path.join(__src, 'layouts'),
       modules: path.join(__src, 'modules'),
       reducers: path.join(__src, 'reducers'),
