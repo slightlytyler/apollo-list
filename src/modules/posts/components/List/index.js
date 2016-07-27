@@ -11,7 +11,7 @@ export class PostsList extends Component {
 
   getPosts = () => get(this.props, 'posts.node.posts.edges', []).map(edge => edge.post);
 
-  getPostsByDay = () => this.getPosts().reduce((acc, post) => {
+  getPostsGroupedByDay = () => this.getPosts().reduce((acc, post) => {
     const day = post.updatedAt;
     const { getDay } = this;
     const dayPostsIndex = findIndex(acc, el => getDay(el.date) === getDay(day));
@@ -29,6 +29,7 @@ export class PostsList extends Component {
   }, []);
 
   getDay = date => moment(new Date(date)).format('MM/DD/YYYY');
+
   getYear = date => moment(new Date(date)).year();
 
   isCurrentYear = date => (this.getYear(date) === this.getYear(new Date()));
@@ -53,7 +54,7 @@ export class PostsList extends Component {
 
     return (
       <div className="posts__list">
-        {this.getPostsByDay().map(({ date, posts }) => (
+        {this.getPostsGroupedByDay().map(({ date, posts }) => (
           <section className="day" key={date}>
             <header className="header">
               {this.formatDate(date)}
