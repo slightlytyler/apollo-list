@@ -6,7 +6,7 @@ import {
   List as FilterList,
   Section as FilterSection,
 } from './Filter';
-import logoImage from 'images/logo.svg';
+import { Logo } from 'components/nav';
 import locationPinIcon from 'icons/location-pin.svg';
 import tagIcon from 'icons/tag.svg';
 import moneyBagIcon from 'icons/money-bag.svg';
@@ -15,7 +15,7 @@ import undoIcon from 'icons/undo.svg';
 export default () => (
   <div className="sidebar">
     <section className="header">
-      <img src={logoImage} alt="home" className="logo" />
+      <Logo />
     </section>
     <ul className="filters">
       <FilterSection>
